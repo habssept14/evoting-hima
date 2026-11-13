@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Pemilihan HIMA</title>
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body class="page-voter">
+
+  <!-- HEADER INSTITUSI -->
+  <header class="site-header" role="banner">
+    <div class="site-header-left-orb" aria-hidden="true"></div>
+    <img src="/assets/logo-kampus.svg" alt="Logo Kampus" class="site-header-logo">
+    <div class="site-header-divider" aria-hidden="true"></div>
+    <div class="site-header-text">
+      <span class="site-header-title">Politeknik Artificial Intelligence Budi Mulia Dua</span>
+      <span class="site-header-subtitle">CYSSA · Cyber Security Student Association</span>
+    </div>
+    <div class="site-header-divider" aria-hidden="true"></div>
+    <img src="/assets/logo-hima.svg" alt="Logo HIMA" class="site-header-logo">
+  </header>
+
+  <!-- NAV BAR -->
+  <nav class="bar" aria-label="Status pemilihan">
+    <div class="brand">
+      <span class="mark" aria-hidden="true"></span>
+      <span class="brand-name" id="election-name">Pemilihan HIMA</span>
+    </div>
+    <div class="bar-right">
+      <span id="status-chip"></span>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- View: Login -->
+    <section id="view-login" class="login" aria-labelledby="login-title">
+
+      <!-- Kiri: Info panel -->
+      <div class="login-intro">
+        <div class="login-live-badge" aria-label="Status: Live">Live Voting</div>
+        <h1>Satu pemilih, <em>satu suara.</em></h1>
+        <div class="login-intro-meta">
+          <div class="login-intro-row">
+            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <div id="facts"></div>
+          </div>
+        </div>
+        <div class="login-countdown" id="countdown-box" hidden>
+          <div>
+            <div class="login-countdown-label" id="countdown-label">Ditutup dalam</div>
+            <div class="login-countdown-val" id="countdown-val">--:--:--</div>
+          </div>
+        </div>
+        <p style="font-size:.88rem;color:rgba(255,255,255,.5);line-height:1.7;max-width:34ch;position:relative;z-index:1">
+          Pilihan Anda dijaga kerahasiaannya. Sistem hanya mencatat bahwa Anda sudah memilih, bukan siapa yang Anda pilih.
+        </p>
+      </div>
+
+      <!-- Kanan: Form login glass -->
+      <div class="login-form">
+        <div class="login-glass">
+          <h2 id="login-title">Masuk dengan NIM</h2>
+          <p>Masukkan Nomor Induk Mahasiswa untuk mengakses surat suara.</p>
+          <form id="login-form" autocomplete="off" novalidate>
+            <div class="field">
+              <label for="nim">Nomor Induk Mahasiswa</label>
+              <input id="nim" name="nim" type="text"
+                autocapitalize="characters" spellcheck="false"
+                maxlength="30" placeholder="Contoh: 2101001"
+                aria-describedby="login-msg">
+            </div>
+            <div id="login-msg" class="note" role="alert" hidden></div>
+            <button class="btn large solid" id="login-btn" type="submit" style="width:100%;margin-top:4px">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+              Masuk &amp; Lihat Kandidat
+            </button>
+          </form>
+          <div class="login-badges">
+            <span class="login-badge">
+              <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              End-to-End Encrypted
+            </span>
+            <span class="login-badge">
+              <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              Pilihan Anonim
+            </span>
+            <span class="login-badge">
+              <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              Real-time Audit
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- View: Surat suara -->
+    <section id="view-ballot" class="ballot" aria-labelledby="ballot-title" hidden>
+      <div class="ballot-head">
+        <h1 id="ballot-title" tabindex="-1">Pilih satu calon</h1>
+        <p class="muted" id="greeting"></p>
+      </div>
+      <div class="cands" id="cands"></div>
+      <div class="ballot-foot row between">
+        <p class="muted small">Sesi ditutup otomatis setelah 2 menit tanpa aktivitas.</p>
+        <button class="btn ghost small" id="cancel-btn" type="button">Keluar tanpa memilih</button>
+      </div>
+    </section>
+
+    <!-- View: Selesai -->
+    <section id="view-done" class="done" aria-labelledby="done-title" hidden>
+      <div class="blot" aria-hidden="true">
+        <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+      </div>
+      <h1 id="done-title" tabindex="-1">Suara Anda sudah tercatat.</h1>
+      <p id="done-text"></p>
+      <button class="btn secondary" id="done-btn" type="button">Selesai</button>
+    </section>
+
+  </main>
+
+  <div id="modal-root"></div>
+
+  <script src="/assets/common.js"></script>
+  <script src="/assets/voter.js"></script>
+</body>
+</html>
